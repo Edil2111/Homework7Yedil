@@ -1,26 +1,44 @@
 package kz.edil.jusanhomeworks6
 
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 
 const val CORRECT_PIN = "1567"
 const val PIN_LENGTH = 4
 
+
 class MainActivity : AppCompatActivity() {
 
     private var pinText = ""
+    lateinit var tvPin: TextView
+
+    var errorColor: Int = Color.BLACK
+    var pinTextColor: Int = Color.BLACK
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        initColors()
+        initTvPin()
         initNumButtons()
         initBackspaceButton()
         initOkButton()
+    }
+
+    private fun initColors() {
+        errorColor= ContextCompat.getColor(this, R.color.error_color)
+        pinTextColor= ContextCompat.getColor(this, R.color.color_primary)
+    }
+
+    private fun initTvPin() {
+        tvPin = findViewById(R.id.tv_pin)
     }
 
     private fun initNumButtons() {
@@ -72,6 +90,8 @@ class MainActivity : AppCompatActivity() {
     private fun checkIfPinIsCorrect(){
         if (pinText == CORRECT_PIN){
             Toast.makeText(this, R.string.pin_is_correct, Toast.LENGTH_LONG).show()
+        } else {
+            tvPin.setTextColor(errorColor)
         }
     }
 
@@ -87,11 +107,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun updateTextView() {
-        val tvPin: TextView = findViewById(R.id.tv_pin)
         if(pinText.length > PIN_LENGTH) {
             pinText = pinText.substring(0, PIN_LENGTH)
         }
         tvPin.text = pinText
+        tvPin.setTextColor(pinTextColor)
     }
 
 }
