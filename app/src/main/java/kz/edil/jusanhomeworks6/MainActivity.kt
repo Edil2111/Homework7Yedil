@@ -28,7 +28,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        Log.e("MainActivity", "Object ref = $this")
 
 
 
@@ -111,6 +110,7 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, R.string.pin_is_correct, Toast.LENGTH_LONG).show()
             val intent = Intent(this, SecondActivity::class.java)
             startActivity(intent)
+
         } else {
             tvPin.setTextColor(errorColor)
         }
@@ -138,7 +138,12 @@ class MainActivity : AppCompatActivity() {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
+
         outState.putString(KEY_PIN, pinTextOnSave)
-    }
+            }
+
+    override fun onSaveInstanceState(outState: Bundle, outPersistentState: PersistableBundle) {
+        super.onSaveInstanceState(outState, outPersistentState)
+         }
 
 }
