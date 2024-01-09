@@ -16,6 +16,12 @@
 
     <style name="AppButton" parent="Widget.AppCompat.Button">
         <item name="android:textColor">@color/color_primary</item>
+        <item name="android:background">@drawable/bg_numbers_button</item>
+        <item name="backgroundTint">@null</item>
+    </style>
+
+    <style name="AppButtonBackspace" parent="Widget.AppCompat.Button">
+        <item name="android:textColor">@color/color_primary</item>
         <item name="android:background">@drawable/bg_button</item>
         <item name="backgroundTint">@null</item>
     </style>

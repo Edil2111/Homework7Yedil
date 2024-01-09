@@ -94,6 +94,11 @@ class MainActivity : AppCompatActivity() {
         pinText = pinText.dropLast(1)
         updateTextView()
         }
+        btnBackspace.setOnLongClickListener {
+            pinText = ""
+            updateTextView()
+            true
+        }
     }
 
     private fun initOkButton() {
@@ -112,6 +117,7 @@ class MainActivity : AppCompatActivity() {
 
         } else {
             tvPin.setTextColor(errorColor)
+
         }
     }
 
